@@ -1,11 +1,20 @@
 package com.ciclo3.Proyecto.Modelos;
 
+import org.springframework.http.converter.json.GsonBuilderUtils;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.transaction.Transaction;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name="Empleados")
 public class Employee {
+
     //Atributos
+    @Id
     private Long idEmpleado;
     private String nameEmployee;
     private String phoneEmployee;

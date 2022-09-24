@@ -1,16 +1,16 @@
 package com.ciclo3.Proyecto.Modelos;
 
-public class objectAnswer {
+public class ObjectAnswer {
     private Object objeto;
     private String message;
 
     //Constructor
-    public objectAnswer(Object objeto, String message) {
+    public ObjectAnswer(Object objeto, String message) {
         this.objeto = objeto;
         this.message = message;
     }
     //Constructor vacio
-    public objectAnswer() {
+    public ObjectAnswer() {
     }
 
     //Setter and getter
