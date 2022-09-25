@@ -1,4 +1,7 @@
 package com.ciclo3.Proyecto.Repositories;
 
-public interface RepositoryEmployee {
+import com.ciclo3.Proyecto.Modelos.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RepositoryEmployee extends JpaRepository<Employee, Long> {
 }

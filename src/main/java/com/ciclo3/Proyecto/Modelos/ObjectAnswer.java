@@ -5,10 +5,11 @@ public class ObjectAnswer {
     private String message;
 
     //Constructor
-    public ObjectAnswer(Object objeto, String message) {
+    public ObjectAnswer(String message, Object objeto) {
         this.objeto = objeto;
         this.message = message;
     }
+
     //Constructor vacio
     public ObjectAnswer() {
     }
@@ -20,13 +21,5 @@ public class ObjectAnswer {
 
     public void setObjeto(Object objeto) {
         this.objeto = objeto;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

@@ -15,7 +15,7 @@ public class Employee {
 
     //Atributos
     @Id
-    private Long idEmpleado;
+    private Long idEmployee;
     private String nameEmployee;
     private String phoneEmployee;
     private String emailEmployee;
@@ -28,8 +28,8 @@ public class Employee {
     //Constructor
 
 
-    public Employee(Long idEmpleado, String nameEmployee, String phoneEmployee, String emailEmployee, Date updatedAtEmployee, Date createdAtEmployee) {
-        this.idEmpleado = idEmpleado;
+    public Employee(Long idEmployee, String nameEmployee, String phoneEmployee, String emailEmployee, Date updatedAtEmployee, Date createdAtEmployee) {
+        this.idEmployee = idEmployee;
         this.nameEmployee = nameEmployee;
         this.phoneEmployee = phoneEmployee;
         this.emailEmployee = emailEmployee;
@@ -40,12 +40,12 @@ public class Employee {
     public Employee() {
     }
     //Setters and getters
-    public Long getIdEmpleado() {
-        return idEmpleado;
+    public Long getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setIdEmpleado(Long idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setIdEmployee(Long idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getNameEmployee() {
