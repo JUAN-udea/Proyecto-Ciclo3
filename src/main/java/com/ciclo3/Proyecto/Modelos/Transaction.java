@@ -1,20 +1,31 @@
 package com.ciclo3.Proyecto.Modelos;
 
-import javax.persistence.Id;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
+import java.util.Date;
+@Entity
+@Table(name = "Transactions")
 public class Transaction {
     //Atributos
+    @Id
     private Long idTransaction;
+    @Column
     private String conceptTransaction;
+    @Column
     private float amountTransaction;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
     private Employee employeeTransaction;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
     private Enterprise enterpriseTransaction;
+    @Column
     private Date createdAtTransaction;
+    @Column
     private Date updatedAtTransaction;
 
     //Constructor
-
     public Transaction(Long idTransaction, String conceptTransaction, float amountTransaction, Date createdAtTransaction, Date updatedAtTransaction) {
         this.idTransaction = idTransaction;
         this.conceptTransaction = conceptTransaction;

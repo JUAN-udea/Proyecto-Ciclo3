@@ -1,15 +1,30 @@
 package com.ciclo3.Proyecto.Modelos;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name="Enterprises")
 public class Enterprise {
     //Atributos
+    @Id
     private Long idEnterprise;
+    @Column
     private String nameEnterprise;
+    @Column
     private String NITEnterprise;
+    @Column
     private String phoneEnterprise;
+    @Column
     private String adressEnterprise;
+    @OneToMany(mappedBy = "enterpriseTransaction")
+    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "enterpriseEmployee")
+    private List<Employee> employees;
+    @Column
     private Date createdAtEnterprise;
+    @Column
     private Date updatedAtEnterprise;
 
     //Constructor

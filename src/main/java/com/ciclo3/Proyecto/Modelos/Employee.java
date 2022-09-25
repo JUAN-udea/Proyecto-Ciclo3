@@ -1,29 +1,38 @@
 package com.ciclo3.Proyecto.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.transaction.Transaction;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="Empleados")
+@Table(name="Employees")
 public class Employee {
 
     //Atributos
     @Id
     private Long idEmployee;
+    @Column
     private String nameEmployee;
+    @Column
     private String phoneEmployee;
+    @Column
     private String emailEmployee;
-
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = ROLES.class,fetch = FetchType.EAGER)
     private List<ROLES> rolesEmployee;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
     private Enterprise enterpriseEmployee;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany
     private List<Transaction> transactions;
+    @Column
     private Date updatedAtEmployee;
+    @Column
     private Date CreatedAtEmployee;
     //Constructor
 
