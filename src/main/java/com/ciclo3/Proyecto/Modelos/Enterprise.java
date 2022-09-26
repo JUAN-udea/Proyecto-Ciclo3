@@ -3,21 +3,22 @@ package com.ciclo3.Proyecto.Modelos;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
 @Entity
 @Table(name="Enterprises")
 public class Enterprise {
-    //Atributos
+    //Atributes
     @Id
+    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEnterprise;
-    @Column
+    @Column(nullable = false, length = 50)
     private String nameEnterprise;
-    @Column
+    @Column(nullable = false, length = 50)
     private String NITEnterprise;
-    @Column
+    @Column(nullable = false, length = 50)
     private String phoneEnterprise;
-    @Column
-    private String adressEnterprise;
+    @Column(nullable = false, length = 50)
+    private String addressEnterprise;
     @OneToMany(mappedBy = "enterpriseTransaction")
     private List<Transaction> transactions;
     @OneToMany(mappedBy = "enterpriseEmployee")
@@ -27,20 +28,24 @@ public class Enterprise {
     @Column
     private Date updatedAtEnterprise;
 
+
     //Constructor
-    public Enterprise(Long idEnterprise, String nameEnterprise, String NITEnterprise, String phoneEnterprise, String adressEnterprise, Date createdAtEnterprise, Date updatedAtEnterprise) {
+    public Enterprise(Long idEnterprise, String nameEnterprise, String NITEnterprise, String phoneEnterprise, String addressEnterprise, Date createdAtEnterprise, Date updatedAtEnterprise) {
         this.idEnterprise = idEnterprise;
         this.nameEnterprise = nameEnterprise;
         this.NITEnterprise = NITEnterprise;
         this.phoneEnterprise = phoneEnterprise;
-        this.adressEnterprise = adressEnterprise;
+        this.addressEnterprise = addressEnterprise;
         this.createdAtEnterprise = createdAtEnterprise;
         this.updatedAtEnterprise = updatedAtEnterprise;
     }
-    //Constructor Vacio
+
+    //Constructor Empty
     public Enterprise() {
     }
-    //Getter and setter
+
+    //Getters and Setters
+
     public Long getIdEnterprise() {
         return idEnterprise;
     }
@@ -73,12 +78,12 @@ public class Enterprise {
         this.phoneEnterprise = phoneEnterprise;
     }
 
-    public String getAdressEnterprise() {
-        return adressEnterprise;
+    public String getAddressEnterprise() {
+        return addressEnterprise;
     }
 
-    public void setAdressEnterprise(String adressEnterprise) {
-        this.adressEnterprise = adressEnterprise;
+    public void setAddressEnterprise(String addressEnterprise) {
+        this.addressEnterprise = addressEnterprise;
     }
 
     public Date getCreatedAtEnterprise() {
@@ -96,4 +101,22 @@ public class Enterprise {
     public void setUpdatedAtEnterprise(Date updatedAtEnterprise) {
         this.updatedAtEnterprise = updatedAtEnterprise;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+
 }

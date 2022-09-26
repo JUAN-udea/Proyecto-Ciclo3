@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
-@Table(name = "Transactions")
+@Table(name="Transactions")
 public class Transaction {
-    //Atributos
+    //Atributes
     @Id
+    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTransaction;
     @Column
     private String conceptTransaction;
@@ -33,10 +35,13 @@ public class Transaction {
         this.createdAtTransaction = createdAtTransaction;
         this.updatedAtTransaction = updatedAtTransaction;
     }
-    //Constructor vacio
+
+    //Constructor Empty
     public Transaction() {
     }
-    //getter and setter
+
+    //Setters and Getters
+
     public Long getIdTransaction() {
         return idTransaction;
     }
@@ -92,6 +97,11 @@ public class Transaction {
     public void setUpdatedAtTransaction(Date updatedAtTransaction) {
         this.updatedAtTransaction = updatedAtTransaction;
     }
+
 }
+
+
+
+
 
 

@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServiceEnterprise implements ServiceInterfaceEnterprise {
-    //Atributos
+public class ServiceEnterprise implements ServiceInterfaceEnterprise{
+
+    //Atribute
     Date Today = new Date();
-    // Dar un objeto del repositorio a la entidad enterprise
+
+    //Inyectar un objeto del repositorio de la entidad enterprise
     @Autowired
     RepositoryEnterprise repositoryEnterprise;
 
@@ -28,36 +30,43 @@ public class ServiceEnterprise implements ServiceInterfaceEnterprise {
         if(EnterpriseBD.isPresent()){
             return EnterpriseBD.get();
         }
-        throw new Exception("IdEnterprise no asignado");
+        throw new Exception("IdEnterprise no asignado a ninguna enterprise de nuestra base de datos");
     }
 
     @Override
     public String getCreateEnterprise(Enterprise enterpriseIn) {
-        // preguntamos si hay alguna enterprise creada
+        //Preguntamos si ya hay alguna enterprise ya registrada con ese Id.
         Optional<Enterprise> EnterpriseBD = repositoryEnterprise.findById(enterpriseIn.getIdEnterprise());
-        if(!EnterpriseBD.isPresent()) {
+        if(!EnterpriseBD.isPresent()){
             repositoryEnterprise.save(enterpriseIn);
-            return "Enterprise creada con exito";
+            return "Enterprise Creada con exito";
+
         }
-        return ("Id ya registrado en otra enterprise");
+        return ("Ese Id ya esta regitrado a una Enterprise Existente");
     }
 
     @Override
     public Enterprise getUpdateEnterprise(Enterprise enterpriseIn) throws Exception {
-
+        //LLamamos a la enterprise a actualizar de la BD
         Enterprise enterpriseBD = getOnlyOneEnterprise(enterpriseIn.getIdEnterprise());
-        if(enterpriseIn.getNameEnterprise()!=null && enterpriseIn.getNameEnterprise().equals("")){
+
+        //Actualizamos atributos
+        if(enterpriseIn.getNameEnterprise()!=null && !enterpriseIn.getNameEnterprise().equals("")){
             enterpriseBD.setNameEnterprise(enterpriseIn.getNameEnterprise());
         }
-        if(enterpriseIn.getNITEnterprise()!=null && enterpriseIn.getNITEnterprise().equals("")){
+
+        if(enterpriseIn.getNITEnterprise()!=null && !enterpriseIn.getNITEnterprise().equals("")){
             enterpriseBD.setNITEnterprise(enterpriseIn.getNITEnterprise());
         }
-        if(enterpriseIn.getAdressEnterprise()!=null && enterpriseIn.getAdressEnterprise().equals("")){
-            enterpriseBD.setAdressEnterprise(enterpriseIn.getAdressEnterprise());
+
+        if(enterpriseIn.getAddressEnterprise()!=null && !enterpriseIn.getAddressEnterprise().equals("")){
+            enterpriseBD.setAddressEnterprise(enterpriseIn.getAddressEnterprise());
         }
-        if(enterpriseIn.getPhoneEnterprise()!=null && enterpriseIn.getPhoneEnterprise().equals("")){
+
+        if(enterpriseIn.getPhoneEnterprise()!=null && !enterpriseIn.getPhoneEnterprise().equals("")){
             enterpriseBD.setPhoneEnterprise(enterpriseIn.getPhoneEnterprise());
         }
+
         enterpriseBD.setUpdatedAtEnterprise(Today);
 
         return repositoryEnterprise.save(enterpriseBD);
@@ -70,6 +79,6 @@ public class ServiceEnterprise implements ServiceInterfaceEnterprise {
             repositoryEnterprise.deleteById(idEnterprise);
             return "Enterprise Eliminada con exito";
         }
-        throw new Exception("Empresa no encontrada");
+        throw new Exception("Enterprise no encontarda");
     }
 }

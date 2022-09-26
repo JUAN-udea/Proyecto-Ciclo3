@@ -1,26 +1,25 @@
 package com.ciclo3.Proyecto.Modelos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 
 import javax.persistence.*;
-import javax.transaction.Transaction;
 import java.util.Date;
 import java.util.List;
-
 @Entity
 @Table(name="Employees")
 public class Employee {
-
-    //Atributos
+    //Atributes
     @Id
+    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmployee;
-    @Column
+    @Column(nullable = false, length = 50)
     private String nameEmployee;
-    @Column
+    @Column(nullable = false, length = 50)
     private String phoneEmployee;
-    @Column
+    @Column(nullable = false, length = 50)
     private String emailEmployee;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = ROLES.class,fetch = FetchType.EAGER)
     private List<ROLES> rolesEmployee;
@@ -33,22 +32,24 @@ public class Employee {
     @Column
     private Date updatedAtEmployee;
     @Column
-    private Date CreatedAtEmployee;
-    //Constructor
+    private Date createdAtEmployee;
 
-
+    //Contructor
     public Employee(Long idEmployee, String nameEmployee, String phoneEmployee, String emailEmployee, Date updatedAtEmployee, Date createdAtEmployee) {
         this.idEmployee = idEmployee;
         this.nameEmployee = nameEmployee;
         this.phoneEmployee = phoneEmployee;
         this.emailEmployee = emailEmployee;
         this.updatedAtEmployee = updatedAtEmployee;
-        this.CreatedAtEmployee = createdAtEmployee;
+        this.createdAtEmployee = createdAtEmployee;
     }
-    //Constructor vacio
+
+    //Constructor Empty
     public Employee() {
     }
-    //Setters and getters
+
+    //Setters and Getters
+
     public Long getIdEmployee() {
         return idEmployee;
     }
@@ -114,10 +115,11 @@ public class Employee {
     }
 
     public Date getCreatedAtEmployee() {
-        return CreatedAtEmployee;
+        return createdAtEmployee;
     }
 
     public void setCreatedAtEmployee(Date createdAtEmployee) {
-        CreatedAtEmployee = createdAtEmployee;
+        this.createdAtEmployee = createdAtEmployee;
     }
+
 }

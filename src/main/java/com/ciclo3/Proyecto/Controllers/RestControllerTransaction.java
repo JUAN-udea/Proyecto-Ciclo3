@@ -15,26 +15,28 @@ public class RestControllerTransaction {
     @Autowired
     ServiceInterfaceTransaction serviceInterfaceTransaction;
 
-    @GetMapping("/ListaTransaction")
+
+    @GetMapping("/ListTransaction")
     public ResponseEntity<List<Transaction>> getTransaction(){
         return new ResponseEntity<>(serviceInterfaceTransaction.getTransaction(), HttpStatus.ACCEPTED);
     }
+
     @GetMapping("/OneTransaction/{idTransaction}")
     public ResponseEntity<Object> getTransactionPath(@PathVariable Long idTransaction){
         try {
             Transaction TransactionX = serviceInterfaceTransaction.getOnlyOneTransaction(idTransaction);
             return new ResponseEntity<>(TransactionX,HttpStatus.OK);
-        } catch (Exception e) {
+        }catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping("/CreateTransaction")
     public ResponseEntity<String> PostCreateTransaction(@RequestBody Transaction TransactionX){
-        try{
-            String message = serviceInterfaceTransaction.getCreateTransaction(TransactionX);
+        try {
+            String message =serviceInterfaceTransaction.getCreateTransaction(TransactionX);
             return new ResponseEntity<>(message,HttpStatus.OK);
-        }catch(Exception e){
+        }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,7 +45,7 @@ public class RestControllerTransaction {
     public ResponseEntity<ObjectAnswer> putUpdateTransaction(@RequestBody Transaction TransactionX){
         try {
             Transaction TransactionBD = serviceInterfaceTransaction.getUpdateTransaction(TransactionX);
-            return new ResponseEntity<>(new ObjectAnswer("Actualizacion de Transaction Exitosa",TransactionBD),HttpStatus.OK);
+            return new ResponseEntity<>(new ObjectAnswer("Atualizacion de Transaction Exitosa",TransactionBD),HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(new ObjectAnswer(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -51,12 +53,12 @@ public class RestControllerTransaction {
 
     @DeleteMapping("/DeleteTransaction/{idTransaction}")
     public ResponseEntity<String> DeleteTransaction(@PathVariable Long idTransaction){
-        try{
+        try {
             String message = serviceInterfaceTransaction.getDeleteTransaction(idTransaction);
             return new ResponseEntity<>(message,HttpStatus.OK);
-        }catch (Exception e){
+        }catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
+
     }
 }
