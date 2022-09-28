@@ -1,7 +1,7 @@
 package com.ciclo3.Proyecto.Controllers;
 
-import com.ciclo3.Proyecto.Modelos.Transaction;
-import com.ciclo3.Proyecto.Modelos.ObjectAnswer;
+import com.ciclo3.Proyecto.Models.Transaction;
+import com.ciclo3.Proyecto.Models.ObjectAnswer;
 import com.ciclo3.Proyecto.Services.ServiceInterfaceTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

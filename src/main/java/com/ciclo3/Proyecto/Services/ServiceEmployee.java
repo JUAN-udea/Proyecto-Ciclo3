@@ -1,6 +1,6 @@
 package com.ciclo3.Proyecto.Services;
 
-import com.ciclo3.Proyecto.Modelos.Employee;
+import com.ciclo3.Proyecto.Models.Employee;
 import com.ciclo3.Proyecto.Repositories.RepositoryEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.Optional;
 
 @Service
 public class ServiceEmployee implements ServiceInterfaceEmployee{
-    //Atributos
+
     Date Today = new Date();
-    // Dar un objeto del repositorio a la entidad Employee
+
     @Autowired
     RepositoryEmployee repositoryEmployee;
 
@@ -28,18 +28,18 @@ public class ServiceEmployee implements ServiceInterfaceEmployee{
         if(EmployeeBD.isPresent()){
             return EmployeeBD.get();
         }
-        throw new Exception("IdEmployee no asignado");
+        throw new Exception("IdEmpleado no asignado");
     }
 
     @Override
     public String getCreateEmployee(Employee EmployeeIn) {
-        // preguntamos si hay alguna Employee creada
+
         Optional<Employee> EmployeeBD = repositoryEmployee.findById(EmployeeIn.getIdEmployee());
         if(!EmployeeBD.isPresent()) {
             repositoryEmployee.save(EmployeeIn);
-            return "Employee creada con exito";
+            return "Empleado creado con exito";
         }
-        return ("Id ya registrado en otra Employee");
+        return ("Id ya registrado en otro empleado");
     }
 
     @Override
@@ -68,9 +68,9 @@ public class ServiceEmployee implements ServiceInterfaceEmployee{
         Optional<Employee> EmployeeBD = repositoryEmployee.findById(idEmployee);
         if(EmployeeBD.isPresent()){
             repositoryEmployee.deleteById(idEmployee);
-            return "Employee Eliminada con exito";
+            return "Empleado Eliminado con exito";
         }
-        throw new Exception("Empleado no encontrada");
+        throw new Exception("Empleado no encontrado");
     }
     
     

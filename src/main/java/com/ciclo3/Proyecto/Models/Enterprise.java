@@ -1,4 +1,4 @@
-package com.ciclo3.Proyecto.Modelos;
+package com.ciclo3.Proyecto.Models;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,23 +8,23 @@ import java.util.List;
 public class Enterprise {
     //Atributes
     @Id
-    @Column(unique = true, length = 30)
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEnterprise;
-    @Column(nullable = false, length = 50)
+    @Column
     private String nameEnterprise;
-    @Column(nullable = false, length = 50)
+    @Column
     private String NITEnterprise;
-    @Column(nullable = false, length = 50)
+    @Column
     private String phoneEnterprise;
-    @Column(nullable = false, length = 50)
+    @Column
     private String addressEnterprise;
     @OneToMany(mappedBy = "enterpriseTransaction")
     private List<Transaction> transactions;
     @OneToMany(mappedBy = "enterpriseEmployee")
     private List<Employee> employees;
     @Column
-    private Date createdAtEnterprise;
+    private java.sql.Date createdAtEnterprise;
     @Column
     private Date updatedAtEnterprise;
 
@@ -36,8 +36,6 @@ public class Enterprise {
         this.NITEnterprise = NITEnterprise;
         this.phoneEnterprise = phoneEnterprise;
         this.addressEnterprise = addressEnterprise;
-        this.createdAtEnterprise = createdAtEnterprise;
-        this.updatedAtEnterprise = updatedAtEnterprise;
     }
 
     //Constructor Empty
@@ -86,11 +84,11 @@ public class Enterprise {
         this.addressEnterprise = addressEnterprise;
     }
 
-    public Date getCreatedAtEnterprise() {
+    public java.sql.Date getCreatedAtEnterprise() {
         return createdAtEnterprise;
     }
 
-    public void setCreatedAtEnterprise(Date createdAtEnterprise) {
+    public void setCreatedAtEnterprise(java.sql.Date createdAtEnterprise) {
         this.createdAtEnterprise = createdAtEnterprise;
     }
 

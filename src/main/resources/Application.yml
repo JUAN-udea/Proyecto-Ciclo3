@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: pSSpMZCHivATUppaQOw0ZgzLY7jHG2Bc
+            client-secret: k33Cnz6r17uiDEn8DaHf3SHRxCTn3WYmA_TiJJey9o1MsOtzaPog9zPTWqnBOnwy
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          auth0:
+            # trailing slash is important!
+            issuer-uri: https://bibliotecaxddiego.us.auth0.com/

@@ -1,4 +1,4 @@
-package com.ciclo3.Proyecto.Modelos;
+package com.ciclo3.Proyecto.Models;
 
 public class ObjectAnswer {
     private Object objeto;

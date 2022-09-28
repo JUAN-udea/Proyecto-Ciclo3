@@ -1,6 +1,6 @@
 package com.ciclo3.Proyecto.Services;
 
-import com.ciclo3.Proyecto.Modelos.Transaction;
+import com.ciclo3.Proyecto.Models.Transaction;
 import com.ciclo3.Proyecto.Repositories.RepositoryTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.Optional;
 
 @Service
 public class ServiceTransaction implements ServiceInterfaceTransaction {
-    //Atributos
+
     Date Today = new Date();
-    // Dar un objeto del repositorio a la entidad Transaction
+
     @Autowired
     RepositoryTransaction repositoryTransaction;
 
@@ -33,7 +33,6 @@ public class ServiceTransaction implements ServiceInterfaceTransaction {
 
     @Override
     public String getCreateTransaction(Transaction TransactionIn) {
-        // preguntamos si hay alguna Transaction creada
         Optional<Transaction> TransactionBD = repositoryTransaction.findById(TransactionIn.getIdTransaction());
         if(!TransactionBD.isPresent()) {
             repositoryTransaction.save(TransactionIn);

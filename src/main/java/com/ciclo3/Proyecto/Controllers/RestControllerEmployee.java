@@ -1,7 +1,7 @@
 package com.ciclo3.Proyecto.Controllers;
 
-import com.ciclo3.Proyecto.Modelos.Employee;
-import com.ciclo3.Proyecto.Modelos.ObjectAnswer;
+import com.ciclo3.Proyecto.Models.Employee;
+import com.ciclo3.Proyecto.Models.ObjectAnswer;
 import com.ciclo3.Proyecto.Services.ServiceInterfaceEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

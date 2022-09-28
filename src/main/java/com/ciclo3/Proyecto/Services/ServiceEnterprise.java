@@ -1,6 +1,6 @@
 package com.ciclo3.Proyecto.Services;
 
-import com.ciclo3.Proyecto.Modelos.Enterprise;
+import com.ciclo3.Proyecto.Models.Enterprise;
 import com.ciclo3.Proyecto.Repositories.RepositoryEnterprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,9 @@ import java.util.Optional;
 @Service
 public class ServiceEnterprise implements ServiceInterfaceEnterprise{
 
-    //Atribute
+
     Date Today = new Date();
 
-    //Inyectar un objeto del repositorio de la entidad enterprise
     @Autowired
     RepositoryEnterprise repositoryEnterprise;
 
@@ -30,27 +29,24 @@ public class ServiceEnterprise implements ServiceInterfaceEnterprise{
         if(EnterpriseBD.isPresent()){
             return EnterpriseBD.get();
         }
-        throw new Exception("IdEnterprise no asignado a ninguna enterprise de nuestra base de datos");
+        throw new Exception("IdEmpresa no asignado a ninguna Empresa de nuestra base de datos");
     }
 
     @Override
-    public String getCreateEnterprise(Enterprise enterpriseIn) {
-        //Preguntamos si ya hay alguna enterprise ya registrada con ese Id.
+    public String setCreateEnterprise(Enterprise enterpriseIn) {
         Optional<Enterprise> EnterpriseBD = repositoryEnterprise.findById(enterpriseIn.getIdEnterprise());
         if(!EnterpriseBD.isPresent()){
             repositoryEnterprise.save(enterpriseIn);
-            return "Enterprise Creada con exito";
+            return "Empresa Creada con exito";
 
         }
-        return ("Ese Id ya esta regitrado a una Enterprise Existente");
+        return ("Ese Id ya esta regitrado a una Empresa Existente");
     }
 
     @Override
     public Enterprise getUpdateEnterprise(Enterprise enterpriseIn) throws Exception {
-        //LLamamos a la enterprise a actualizar de la BD
         Enterprise enterpriseBD = getOnlyOneEnterprise(enterpriseIn.getIdEnterprise());
 
-        //Actualizamos atributos
         if(enterpriseIn.getNameEnterprise()!=null && !enterpriseIn.getNameEnterprise().equals("")){
             enterpriseBD.setNameEnterprise(enterpriseIn.getNameEnterprise());
         }
@@ -67,6 +63,10 @@ public class ServiceEnterprise implements ServiceInterfaceEnterprise{
             enterpriseBD.setPhoneEnterprise(enterpriseIn.getPhoneEnterprise());
         }
 
+        if(enterpriseIn.getCreatedAtEnterprise()!=null && !enterpriseIn.getCreatedAtEnterprise().equals("")){
+            enterpriseBD.setCreatedAtEnterprise(enterpriseIn.getCreatedAtEnterprise());
+        }
+
         enterpriseBD.setUpdatedAtEnterprise(Today);
 
         return repositoryEnterprise.save(enterpriseBD);
@@ -77,8 +77,8 @@ public class ServiceEnterprise implements ServiceInterfaceEnterprise{
         Optional<Enterprise> enterpriseBD = repositoryEnterprise.findById(idEnterprise);
         if(enterpriseBD.isPresent()){
             repositoryEnterprise.deleteById(idEnterprise);
-            return "Enterprise Eliminada con exito";
+            return "Empresa Eliminada con exito";
         }
-        throw new Exception("Enterprise no encontarda");
+        throw new Exception("Empresa No encontarda");
     }
 }
